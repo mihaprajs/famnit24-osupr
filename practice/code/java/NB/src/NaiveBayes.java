@@ -17,8 +17,26 @@ class NaiveBayes {
         classTable = new ClassTable(Y);
     }
 
-    public String predict(String[][] row) {
-        return null;
+    public String predict(String[] valuseToPredict) {
+        ArrayList<String> classValues = classTable.getClassValues();
+        double mostProbableValue = Double.MIN_VALUE;
+        String mostProbableClass = "";
+
+        for (String classValue : classValues) {
+            double probability = 1.0;
+            for (int columnIndex = 0; columnIndex < columnTables.length; columnIndex++) {
+                probability *= columnTables[columnIndex].getProbability(valuseToPredict[columnIndex], classValue);
+            }
+            probability *= classTable.getProbability(classValue);
+
+            System.out.println("Class value:" + classValue + ", " + probability);
+            if (mostProbableValue < probability) {
+                mostProbableValue = probability;
+                mostProbableClass = classValue;
+            }
+        }
+
+        return mostProbableClass;
     }
 
     public void display() {
@@ -48,6 +66,18 @@ class ColumnTable{
         }
     }
 
+    public double getProbability(String columnValue, String classValue) {
+        int rowIndex = columnValues.indexOf(columnValue);
+        int colIndex = classValues.indexOf(classValue);
+        int count = counts[rowIndex][colIndex];
+        int sum = 0;
+
+        for (int row = 0; row< columnValues.size(); row++) {
+            sum += counts[row][colIndex];
+        }
+        return 1.0 * count / sum;
+    }
+
     public void display() {
         for (int row = 0; row < counts.length; row++) {
             System.out.print(columnValues.get(row) + ": ");
@@ -68,5 +98,18 @@ class ClassTable{
             int classIndex = classValues.indexOf(classValue);
             counts[classIndex]++;
         }
+    }
+    public ArrayList<String> getClassValues() {
+        return classValues;
+    }
+
+    public double getProbability(String classValue) {
+        int index = classValues.indexOf(classValue);
+        int count = counts[index];
+        int sum = 0;
+        for (int column = 0; column < classValues.size(); column++) {
+            sum += counts[column];
+        }
+        return 1.0 * count / sum;
     }
 }
