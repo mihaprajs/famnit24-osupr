@@ -1,5 +1,7 @@
-import ann.ActivationFunction;
-import ann.ArtificialNeuralNetwork;
+package perceptron;
+
+import perceptron.ann.ActivationFunction;
+import perceptron.ann.ArtificialNeuralNetwork;
 import ann.Layer;
 
 public class Main2 {

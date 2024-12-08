@@ -1,4 +1,4 @@
-package ann;
+package perceptron.ann;
 
 import java.util.function.Function;
 

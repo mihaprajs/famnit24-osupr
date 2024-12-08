@@ -1,3 +1,5 @@
+package naive_bayes;
+
 import java.util.ArrayList;
 
 class DataHelper {

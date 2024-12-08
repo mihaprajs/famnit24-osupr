@@ -1,4 +1,4 @@
-package ann;
+package perceptron.ann;
 
 public class ArtificialNeuralNetwork {
     private Layer[] layers;

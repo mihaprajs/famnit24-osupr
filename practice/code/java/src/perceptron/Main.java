@@ -1,3 +1,5 @@
+package perceptron;
+
 public class Main {
     static Point[] data = generateData(500);
 
