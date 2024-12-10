@@ -2,7 +2,7 @@ package perceptron;
 
 import perceptron.ann.ActivationFunction;
 import perceptron.ann.ArtificialNeuralNetwork;
-import ann.Layer;
+import perceptron.ann.Layer;
 
 public class Main2 {
     static Point[] data = generateData(500);
@@ -16,7 +16,16 @@ public class Main2 {
                 new Layer(1, ActivationFunction.sigmoid)
         });
 
-        test(ann);
+        for (Point p : data) {
+            test(ann);
+
+            float[] inputs = {p.x, p.y};
+            float[] targets = {p.label};
+
+            ann.fitOne(inputs, targets);
+        }
+
+
     }
 
     public static void test(ArtificialNeuralNetwork model) {
