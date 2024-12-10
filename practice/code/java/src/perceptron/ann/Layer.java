@@ -37,7 +37,7 @@ public class Layer {
     public Matrix backPropagate(Matrix errors, float learningRate) {
         Function<Matrix, Matrix> derivative = ActivationUtils.getDerivativeFunction(this.activationFunction);
 
-        // calculate errors for previosu layer
+        // calculate errors for previous layer
         Matrix transposedWeights = weights.transpose();
         Matrix previousLayersErrors = Matrix.multiply(transposedWeights, errors);
 
