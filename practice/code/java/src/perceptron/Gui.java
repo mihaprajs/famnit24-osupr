@@ -19,6 +19,11 @@ public class Gui extends JPanel {
         frame.setVisible(true);
     }
 
+    public void setDrawable(Drawable drawable) {
+        Drawable[] drw = {drawable};
+        this.drawables = drw;
+    }
+
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 

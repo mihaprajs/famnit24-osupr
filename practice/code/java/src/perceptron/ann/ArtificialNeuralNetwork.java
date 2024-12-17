@@ -25,14 +25,24 @@ public class ArtificialNeuralNetwork {
         return inputToNextLayer.transpose().getValues()[0];
     }
 
-    public void fitOne(float[] input, float[] targets) {
+    public float fitOne(float[] input, float[] targets) {
         float[] prediction = predictOne(input);
         Matrix predictionMatrix = new Matrix(prediction);
         Matrix targetMatrix = new Matrix(targets);
 
         Matrix errors = Matrix.subtractMatrices(targetMatrix, predictionMatrix).transpose();
+
+        float loss = 0;
+        for (float[] row : errors.getValues()) {
+            for (float value : row) {
+                loss += Math.abs(value);
+            }
+        }
+
         for (int i = layers.length - 1; i >= 0; i--) {
             errors = layers[i].backPropagate(errors, learningRate);
         }
+
+        return loss;
     }
 }
