@@ -10,7 +10,7 @@ import java.util.List;
 public class Main3 {
     public static void main(String[] args) throws IOException, InterruptedException {
         MnistLoader loader = new MnistLoader();
-        List<MnistDigit> digits = loader.load("Pot do datoteke");
+        List<MnistDigit> digits = loader.load("C:\\Users\\mihap\\Code\\Faks\\famnit24-osupr\\practice\\code\\java\\mnist_train.csv");
         // System.out.println("Digits loaded: " + digits.size());
 
         ArtificialNeuralNetwork model = new ArtificialNeuralNetwork(784, .0001f, new Layer[]{
